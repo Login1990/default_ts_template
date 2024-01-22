@@ -1,13 +1,17 @@
 import express, {Express, NextFunction, Request, Response} from "express"
-import router from "./routes/backend"
+import index from "./routes/index"
+import morgan from "morgan";
 
 const app: Express = express()
 const port: number = 3000
 
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(morgan('dev'));
 
-app.use('/', router)
+//Routes
+app.use('/', index)
 
 
 app.listen(port, () => {
